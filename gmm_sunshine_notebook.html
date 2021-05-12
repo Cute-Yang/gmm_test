@@ -14267,7 +14267,7 @@ a.anchor-link {
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">sys</span>
-
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
 <span class="c1">#配置输出日志</span>
 <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span>
     <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span>
@@ -14674,7 +14674,8 @@ a.anchor-link {
     <span class="n">J</span><span class="o">=</span><span class="n">rows</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span>
         <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">G_param_T</span><span class="p">,</span><span class="n">W</span><span class="p">),</span><span class="n">G_param</span>
     <span class="p">)</span>
-    <span class="k">return</span> <span class="n">J</span>
+    <span class="n">p</span><span class="o">=</span><span class="n">stats</span><span class="o">.</span><span class="n">chi2</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">J</span><span class="p">,</span><span class="n">df</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">J</span><span class="p">,</span><span class="n">p</span>
 </pre></div>
 
      </div>
@@ -14730,39 +14731,39 @@ $${\left[ {\begin{matrix}
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>2021-05-13 06:06:40,778 [INFO]:stat info of variable x,y
+<pre>2021-05-13 07:46:22,837 [INFO]:stat info of variable x,y
     ------------------------------------------------
     x_mean_square:0.20
-    x_mean:0.37
+    x_mean:0.43
 
-    y_mean_square:0.95
-    y_mean:0.47
+    y_mean_square:0.31
+    y_mean:-0.47
 
-    xy_mean_multi:0.38
-    xy_mean_sum:0.84
+    xy_mean_multi:-0.17
+    xy_mean_sum:-0.04
     ------------------------------------------------
     
-2021-05-13 06:06:40,779 [INFO]:beging evalute theta by frist GMM FIRST STEP....
-2021-05-13 06:06:40,781 [INFO]:iter at 0,the Q value is 3.93125
-2021-05-13 06:06:40,783 [INFO]:iter at 1,the Q value is 2.92995
-2021-05-13 06:06:40,784 [INFO]:iter at 2,the Q value is 2.28958
-2021-05-13 06:06:40,786 [INFO]:iter at 3,the Q value is 1.85542
-2021-05-13 06:06:40,787 [INFO]:iter at 4,the Q value is 1.54714
-2021-05-13 06:06:40,788 [INFO]:iter at 5,the Q value is 1.31962
-2021-05-13 06:06:40,789 [INFO]:iter at 6,the Q value is 1.14599
-2021-05-13 06:06:40,790 [INFO]:iter at 7,the Q value is 1.00957
-2021-05-13 06:06:40,791 [INFO]:iter at 8,the Q value is 0.89961
-2021-05-13 06:06:40,793 [INFO]:iter at 9,the Q value is 0.80898
-2021-05-13 06:06:40,795 [INFO]:iter at 10,the Q value is 0.73285
-2021-05-13 06:06:40,796 [INFO]:iter at 11,the Q value is 0.66782
-2021-05-13 06:06:40,797 [INFO]:iter at 12,the Q value is 0.61150
-2021-05-13 06:06:40,798 [INFO]:iter at 13,the Q value is 0.56213
-2021-05-13 06:06:40,800 [INFO]:iter at 14,the Q value is 0.51844
-2021-05-13 06:06:40,801 [INFO]:iter at 15,the Q value is 0.47944
-2021-05-13 06:06:40,802 [INFO]:iter at 16,the Q value is 0.44439
-2021-05-13 06:06:40,803 [INFO]:iter at 17,the Q value is 0.41271
-2021-05-13 06:06:40,804 [INFO]:iter at 18,the Q value is 0.38392
-2021-05-13 06:06:40,805 [INFO]:iter at 19,the Q value is 0.35767
+2021-05-13 07:46:22,838 [INFO]:beging evalute theta by frist GMM FIRST STEP....
+2021-05-13 07:46:22,841 [INFO]:iter at 0,the Q value is 5.58302
+2021-05-13 07:46:22,843 [INFO]:iter at 1,the Q value is 4.10913
+2021-05-13 07:46:22,846 [INFO]:iter at 2,the Q value is 3.19927
+2021-05-13 07:46:22,848 [INFO]:iter at 3,the Q value is 2.59491
+2021-05-13 07:46:22,850 [INFO]:iter at 4,the Q value is 2.17221
+2021-05-13 07:46:22,851 [INFO]:iter at 5,the Q value is 1.86479
+2021-05-13 07:46:22,852 [INFO]:iter at 6,the Q value is 1.63417
+2021-05-13 07:46:22,854 [INFO]:iter at 7,the Q value is 1.45669
+2021-05-13 07:46:22,855 [INFO]:iter at 8,the Q value is 1.31707
+2021-05-13 07:46:22,857 [INFO]:iter at 9,the Q value is 1.20516
+2021-05-13 07:46:22,859 [INFO]:iter at 10,the Q value is 1.11395
+2021-05-13 07:46:22,861 [INFO]:iter at 11,the Q value is 1.03850
+2021-05-13 07:46:22,862 [INFO]:iter at 12,the Q value is 0.97525
+2021-05-13 07:46:22,864 [INFO]:iter at 13,the Q value is 0.92161
+2021-05-13 07:46:22,865 [INFO]:iter at 14,the Q value is 0.87563
+2021-05-13 07:46:22,868 [INFO]:iter at 15,the Q value is 0.83583
+2021-05-13 07:46:22,869 [INFO]:iter at 16,the Q value is 0.80109
+2021-05-13 07:46:22,871 [INFO]:iter at 17,the Q value is 0.77054
+2021-05-13 07:46:22,872 [INFO]:iter at 18,the Q value is 0.74349
+2021-05-13 07:46:22,874 [INFO]:iter at 19,the Q value is 0.71938
 </pre>
 </div>
 </div>
@@ -14774,9 +14775,9 @@ $${\left[ {\begin{matrix}
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>0.24469687431607462 0.8530118756579825
+<pre>0.11118444858709076 0.28506283032469
 theta is :
- [0.1935413  0.69625588 0.99795733 0.10692428]
+ [ 0.15682362  0.67996357  0.8631801  -0.04676108]
 </pre>
 </div>
 </div>
@@ -14818,16 +14819,16 @@ theta is :
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>方程加权矩阵:
- [[ 1.16869522e-03  3.78610260e-05  2.55109793e-04  1.04469320e-06
-   2.59101277e-04]
- [ 3.78610260e-05  1.04129767e-03  7.10507169e-05  2.21309742e-04
-   1.67319225e-04]
- [ 2.55109793e-04  7.10507169e-05  4.63751833e-04  1.48404190e-05
-   6.21857382e-05]
- [ 1.04469320e-06  2.21309742e-04  1.48404190e-05  4.73046937e-04
-  -1.36570270e-05]
- [ 2.59101277e-04  1.67319225e-04  6.21857382e-05 -1.36570270e-05
-   1.02336967e-03]]
+ [[ 1.08720401e-03 -2.01354110e-06  1.53321100e-04 -7.94013858e-06
+   1.15917568e-04]
+ [-2.01354110e-06  9.96727211e-04  1.16379984e-06  1.66666704e-04
+   1.12607306e-04]
+ [ 1.53321100e-04  1.16379984e-06  4.67174371e-04 -3.61200284e-05
+  -1.94869848e-05]
+ [-7.94013858e-06  1.66666704e-04 -3.61200284e-05  3.99196848e-04
+   4.31188472e-05]
+ [ 1.15917568e-04  1.12607306e-04 -1.94869848e-05  4.31188472e-05
+   9.37409672e-04]]
 </pre>
 </div>
 </div>
@@ -14871,39 +14872,39 @@ theta is :
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>2021-05-13 06:06:40,834 [INFO]:begin evalue theta by GMM SECOND STEP...
-2021-05-13 06:06:40,836 [INFO]:stat info of variable x,y
+<pre>2021-05-13 07:46:22,916 [INFO]:begin evalue theta by GMM SECOND STEP...
+2021-05-13 07:46:22,918 [INFO]:stat info of variable x,y
     ------------------------------------------------
     x_mean_square:0.20
-    x_mean:0.37
+    x_mean:0.43
 
-    y_mean_square:0.95
-    y_mean:0.47
+    y_mean_square:0.31
+    y_mean:-0.47
 
-    xy_mean_multi:0.38
-    xy_mean_sum:0.84
+    xy_mean_multi:-0.17
+    xy_mean_sum:-0.04
     ------------------------------------------------
     
-2021-05-13 06:06:40,839 [INFO]:iter at 0,the Q value is 0.00020
-2021-05-13 06:06:40,840 [INFO]:iter at 1,the Q value is 0.00020
-2021-05-13 06:06:40,841 [INFO]:iter at 2,the Q value is 0.00020
-2021-05-13 06:06:40,842 [INFO]:iter at 3,the Q value is 0.00020
-2021-05-13 06:06:40,843 [INFO]:iter at 4,the Q value is 0.00020
-2021-05-13 06:06:40,845 [INFO]:iter at 5,the Q value is 0.00020
-2021-05-13 06:06:40,846 [INFO]:iter at 6,the Q value is 0.00020
-2021-05-13 06:06:40,846 [INFO]:iter at 7,the Q value is 0.00020
-2021-05-13 06:06:40,847 [INFO]:iter at 8,the Q value is 0.00020
-2021-05-13 06:06:40,849 [INFO]:iter at 9,the Q value is 0.00020
-2021-05-13 06:06:40,850 [INFO]:iter at 10,the Q value is 0.00020
-2021-05-13 06:06:40,851 [INFO]:iter at 11,the Q value is 0.00020
-2021-05-13 06:06:40,852 [INFO]:iter at 12,the Q value is 0.00020
-2021-05-13 06:06:40,852 [INFO]:iter at 13,the Q value is 0.00020
-2021-05-13 06:06:40,853 [INFO]:iter at 14,the Q value is 0.00020
-2021-05-13 06:06:40,855 [INFO]:iter at 15,the Q value is 0.00020
-2021-05-13 06:06:40,856 [INFO]:iter at 16,the Q value is 0.00020
-2021-05-13 06:06:40,857 [INFO]:iter at 17,the Q value is 0.00020
-2021-05-13 06:06:40,859 [INFO]:iter at 18,the Q value is 0.00020
-2021-05-13 06:06:40,860 [INFO]:iter at 19,the Q value is 0.00020
+2021-05-13 07:46:22,920 [INFO]:iter at 0,the Q value is 0.00061
+2021-05-13 07:46:22,922 [INFO]:iter at 1,the Q value is 0.00061
+2021-05-13 07:46:22,923 [INFO]:iter at 2,the Q value is 0.00061
+2021-05-13 07:46:22,925 [INFO]:iter at 3,the Q value is 0.00061
+2021-05-13 07:46:22,927 [INFO]:iter at 4,the Q value is 0.00061
+2021-05-13 07:46:22,929 [INFO]:iter at 5,the Q value is 0.00061
+2021-05-13 07:46:22,930 [INFO]:iter at 6,the Q value is 0.00061
+2021-05-13 07:46:22,933 [INFO]:iter at 7,the Q value is 0.00061
+2021-05-13 07:46:22,934 [INFO]:iter at 8,the Q value is 0.00061
+2021-05-13 07:46:22,936 [INFO]:iter at 9,the Q value is 0.00061
+2021-05-13 07:46:22,938 [INFO]:iter at 10,the Q value is 0.00061
+2021-05-13 07:46:22,939 [INFO]:iter at 11,the Q value is 0.00061
+2021-05-13 07:46:22,941 [INFO]:iter at 12,the Q value is 0.00061
+2021-05-13 07:46:22,942 [INFO]:iter at 13,the Q value is 0.00061
+2021-05-13 07:46:22,944 [INFO]:iter at 14,the Q value is 0.00061
+2021-05-13 07:46:22,945 [INFO]:iter at 15,the Q value is 0.00061
+2021-05-13 07:46:22,946 [INFO]:iter at 16,the Q value is 0.00061
+2021-05-13 07:46:22,947 [INFO]:iter at 17,the Q value is 0.00061
+2021-05-13 07:46:22,950 [INFO]:iter at 18,the Q value is 0.00061
+2021-05-13 07:46:22,952 [INFO]:iter at 19,the Q value is 0.00061
 </pre>
 </div>
 </div>
@@ -14915,9 +14916,9 @@ theta is :
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>0.24469687431607462 0.8530118756579825
+<pre>0.11118444858709076 0.28506283032469
 theta second params is :
- [0.19631399 0.69572637 0.99776457 0.10764018]
+ [ 0.15601972  0.67932849  0.86179113 -0.04711606]
 </pre>
 </div>
 </div>
@@ -14960,16 +14961,16 @@ theta second params is :
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>2021-05-13 06:06:40,871 [INFO]:stat info of variable x,y
+<pre>2021-05-13 07:46:22,963 [INFO]:stat info of variable x,y
     ------------------------------------------------
     x_mean_square:0.20
-    x_mean:0.37
+    x_mean:0.43
 
-    y_mean_square:0.95
-    y_mean:0.47
+    y_mean_square:0.31
+    y_mean:-0.47
 
-    xy_mean_multi:0.38
-    xy_mean_sum:0.84
+    xy_mean_multi:-0.17
+    xy_mean_sum:-0.04
     ------------------------------------------------
     
 </pre>
@@ -14983,8 +14984,8 @@ theta second params is :
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>0.24469687431607462 0.8530118756579825
-Theta VARIANCE is 0.000660
+<pre>0.11118444858709076 0.28506283032469
+Theta VARIANCE is 0.000321
 </pre>
 </div>
 </div>
@@ -15004,8 +15005,9 @@ Theta VARIANCE is 0.000660
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[13]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">J</span><span class="o">=</span><span class="n">J_test</span><span class="p">(</span><span class="n">W</span><span class="p">,</span><span class="n">second_params</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;J stat is </span><span class="si">%.4f</span><span class="s2">&quot;</span><span class="o">%</span><span class="k">J</span>)
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">J</span><span class="p">,</span><span class="n">p</span><span class="o">=</span><span class="n">J_test</span><span class="p">(</span><span class="n">W</span><span class="p">,</span><span class="n">second_params</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;J_stat</span><span class="se">\t</span><span class="s2"> p</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%.4f</span><span class="se">\t</span><span class="s2"> </span><span class="si">%.4f</span><span class="se">\t</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">J</span><span class="p">,</span><span class="n">p</span><span class="p">))</span>
 </pre></div>
 
      </div>
@@ -15025,16 +15027,16 @@ Theta VARIANCE is 0.000660
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>2021-05-13 06:06:40,880 [INFO]:stat info of variable x,y
+<pre>2021-05-13 07:46:22,974 [INFO]:stat info of variable x,y
     ------------------------------------------------
     x_mean_square:0.20
-    x_mean:0.37
+    x_mean:0.43
 
-    y_mean_square:0.95
-    y_mean:0.47
+    y_mean_square:0.31
+    y_mean:-0.47
 
-    xy_mean_multi:0.38
-    xy_mean_sum:0.84
+    xy_mean_multi:-0.17
+    xy_mean_sum:-0.04
     ------------------------------------------------
     
 </pre>
@@ -15048,8 +15050,9 @@ Theta VARIANCE is 0.000660
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>0.24469687431607462 0.8530118756579825
-J stat is 0.1950
+<pre>0.11118444858709076 0.28506283032469
+J_stat	 p	
+0.6134	 0.0384	
 </pre>
 </div>
 </div>

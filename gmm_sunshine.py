@@ -3,6 +3,7 @@ from typing import List
 import logging
 import os
 import sys
+from scipy import stats
 
 #配置输出日志
 logging.basicConfig(
@@ -328,7 +329,8 @@ def J_test(W,theta):
     J=rows*np.dot(
         np.dot(G_param_T,W),G_param
     )
-    return J
+    p=stats.chi2.cdf(J,df=4)
+    return J,p
 
 first_step_params=gmm_first_step()
 
@@ -344,6 +346,7 @@ theta_variance=gmm_theta_var(second_params, W)
 # print(second_params)
 print("Theta VARIANCE is %.6f"%theta_variance)
 
-J=J_test(W,second_params)
+J,p=J_test(W,second_params)
 print("J stat is %.4f"%J)
+print("p value is %.4f"%p)
 
